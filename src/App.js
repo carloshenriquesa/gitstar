@@ -1,21 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import SearchUser from './components/SearchUser';
+import UserInfo from './components/UserInfo';
 
-class App extends Component {
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      repos: []
+    };
+  }
+
+  updateUser(user) {
+    this.setState(
+      user: user
+    );
+  }
+
+  updateRepos(repos) {
+    this.setState(
+      repos: repos
+    );
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container">
+        <SearchUser
+          updateUser={this.updateUser}
+          updateRepos={this.updateRepos}
+        />
+        <UserInfo
+          user={this.state.user}
+          repos={this.state.repos}
+        />
       </div>
     );
   }
-}
-
-export default App;
+};
